@@ -1,0 +1,18 @@
+<div class="toolbar-container">
+  <button md-icon-button mdTooltip="Alle auswählen" mdTooltipPosition="above">
+    <md-icon>
+      check_box
+    </md-icon>
+  </button>
+  <button md-icon-button mdTooltip="Auswahl aufheben" mdTooltipPosition="above">
+    <md-icon>
+      check_box_outline_blank
+    </md-icon>
+  </button>
+  <span class="fill-flex"></span>
+  <button md-icon-button (click)="toogleViewMode(this)" mdTooltip="{viewModeLabel, select, Listenansicht {view_module} Rasteransicht {list}}" mdTooltipPosition="above">
+    <md-icon>
+      {{viewModeLabel}}
+    </md-icon>
+  </button>
+</div>

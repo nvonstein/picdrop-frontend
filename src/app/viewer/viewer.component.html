@@ -1,0 +1,29 @@
+<div class="topbar-container">
+  <component-viewer-header></component-viewer-header>
+  <component-viewer-toolbar
+    (onModeChange)="onViewModeChange($event)"
+    ></component-viewer-toolbar>
+  <div></div>
+</div>
+
+<div class="scrolling-content content-container">
+  <div [ngSwitch]="viewMode" layout="column">
+    <md-grid-list *ngSwitchCase="'view_module'" cols="3" cols-sm="2" rowHeight="4:3" gutterSize="10px">
+      <md-grid-tile colspan="1" rowspan="1" *ngFor="let num of nums">
+        <div class="crop-img">
+          <img md-card-image src="assets/img/Image{{num}}.jpg">
+        </div>
+        <button md-mini-fab class="top-left transparent"><md-icon>add</md-icon></button>
+      </md-grid-tile>
+    </md-grid-list>
+
+    <md-list *ngSwitchCase="'list'">
+      <md-list-item *ngFor="let num of nums">
+        <h3 md-line> Image{{num}} </h3>
+        <p md-line>
+          <span> Lore Ipsum</span>
+        </p>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+body {
+  margin: 0;
+  display: inline;
+}
+
+.fill-flex {
+  flex: 1 1 auto;
+}
+
+.scrolling {
+  overflow: scroll;
+}
+
+div.crop-img img{
+  width: 150%;
+  margin: 0 0 0 -25%;
+}
+
+.top-left {
+  position: absolute;
+  top: 0;
+  left : 0;
+}
+
+.topbar-container {
+  height: 170px;
+}
+
+.toolbar-container {
+  position: relative;
+  display: flex;
+  height: 40px;
+}
+
+.scrolling-content {
+  overflow: auto;
+}
+
+.content-container {
+  min-height: calc(100vh - 170px);
+  height: calc(100vh - 170px);
+}
+
