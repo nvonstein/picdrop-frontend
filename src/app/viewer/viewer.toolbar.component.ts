@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {MdButton} from "@angular/material";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {MdButton, MdCheckboxChange} from "@angular/material";
 
 @Component({
     selector: 'component-viewer-toolbar',
@@ -11,6 +11,8 @@ export class ViewerToolbarComponent {
   viewModeLabel = 'list';
 
   @Output() onModeChange = new EventEmitter<string>();
+  @Output() onSelect = new EventEmitter<boolean>();
+  @Input() selectionState : boolean = false;
 
   constructor() {}
 
@@ -21,4 +23,16 @@ export class ViewerToolbarComponent {
 
     this.onModeChange.emit(this.viewMode);
   };
+
+  onSelectAll() : void {
+    this.onSelect.emit(true);
+  }
+
+  onDeselectAll() : void {
+    this.onSelect.emit(false);
+  }
+
+  onSelectEvent(event : MdCheckboxChange) : void {
+    this.onSelect.emit(event.checked);
+  }
 }

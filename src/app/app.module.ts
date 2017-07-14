@@ -13,6 +13,7 @@ import { ViewerComponent } from './viewer/viewer.component';
 import { ViewerHeaderComponent } from './viewer/viewer.header.component';
 import { SidenavPrimaryComponent } from './sidenav.primary.component';
 import {ViewerToolbarComponent} from "./viewer/viewer.toolbar.component";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {ViewerToolbarComponent} from "./viewer/viewer.toolbar.component";
   imports: [
     BrowserModule,
     CommonModule,
+    FormsModule,
     MaterialModule,
     BrowserAnimationsModule
   ],
