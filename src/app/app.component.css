@@ -41,6 +41,11 @@ div.crop-img img{
   height: 40px;
 }
 
+.toolbar-container md-checkbox {
+  display: flex;
+  margin-left: 5px;
+}
+
 .scrolling-content {
   overflow: auto;
 }
