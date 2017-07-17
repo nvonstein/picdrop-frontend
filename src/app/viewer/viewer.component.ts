@@ -34,6 +34,10 @@ export class ViewerComponent {
     this.viewMode = mode;
   }
 
+  selectElement(event : MdCheckboxChange, index : number) : void {
+    this.resources[index].selected = event.checked;
+  }
+
   onGlobalSelect(toogle : boolean) {
     this.resources.forEach(x => x.selected = toogle);
   }

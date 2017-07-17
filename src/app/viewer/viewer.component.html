@@ -16,17 +16,24 @@
         </div>
         <button md-mini-fab class="top-right transparent"><md-icon>add</md-icon></button>
         <md-checkbox id="{{item.id}}"
-                     [(checked)]="item.selected"
+                     [checked]="item.selected"
+                     (change)="selectElement($event,i)"
                      class="top-left"></md-checkbox>
       </md-grid-tile>
     </md-grid-list>
 
     <md-list *ngSwitchCase="'list'">
-      <md-list-item *ngFor="let item of resources">
-        <h3 md-line> Image{{item.id}} </h3>
-        <p md-line>
-          <span> Lore Ipsum</span>
-        </p>
+      <md-list-item *ngFor="let item of resources, let i=index">
+        <md-checkbox id="{{item.id}}"
+                     [checked]="item.selected"
+                     (change)="selectElement($event,i)"
+                     class=""></md-checkbox>
+        <div>
+          <h3 md-line> Image{{item.id}} </h3>
+          <p md-line>
+            <span> Lore Ipsum</span>
+          </p>
+        </div>
       </md-list-item>
     </md-list>
   </div>
