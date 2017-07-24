@@ -6,52 +6,51 @@ import {Http, Request, Headers, RequestMethod} from "@angular/http";
 
 
 import 'rxjs/add/operator/toPromise';
+import {TokenHeaderInterceptor} from "../interceptor/auth.interceptor";
 
 
-
-export interface AuthService {
-  login(user: string, password: string): Promise<MeService>;
-  logout(): boolean;
+export interface AuthService{
+  login(): Promise<Request>;
+  logout(): void;
 }
 
-export class MeService {
+@Injectable()
+export abstract class CredentialAuthService implements AuthService {
 
-  constructor(private token:string, private http: Http){};
+  constructor(protected http: Http, protected tokenItc: TokenHeaderInterceptor) {}
 
-  getMe(): Promise<string> {
-    let header: Headers = new Headers();
+  protected user:string;
+  protected password:string;
 
-    header.append("Authorization","Bearer " + this.token);
+  abstract login(): Promise<Request>;
+  abstract logout(): void;
 
-    return this.http.request(new Request({
-      url: "/picdrop/app/users/me",
-      method: RequestMethod.Get,
-      headers: header
-    })).toPromise().then(resp => resp.json().email as string);
+  withUser(user:string) : CredentialAuthService {
+    this.user = user;
+    return this;
+  }
+
+  withPassword(password:string) : CredentialAuthService {
+    this.password = password;
+    return this;
   }
 }
 
 @Injectable()
-export class AppAuthService implements AuthService {
-
-  constructor(private http: Http) {}
+export class BasicAuthService extends CredentialAuthService {
 
   private endpoint = "/picdrop/app/login";
 
-  protected buildService(token:string) {
-    return new MeService(token, this.http);
-  }
-
-  login(user: string, password: string): Promise<MeService> {
+  login(): Promise<Request> {
     let header: Headers = new Headers();
 
-    header.append("Authorization", "Basic " + btoa(user + ":" + password));
+    header.append("Authorization", "Basic " + btoa(this.user + ":" + this.password));
 
     return this.http.request(new Request({
       url: this.endpoint,
       method: RequestMethod.Post,
       headers: header
-    })).toPromise().then(response => this.buildService(response.text())).catch(this.handleError);
+    })).toPromise().then(response => this.tokenItc.setToken(response.text())).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
@@ -59,8 +58,7 @@ export class AppAuthService implements AuthService {
     return Promise.reject(error.message || error);
   }
 
-
-  logout(): boolean {
-    throw new Error("Method not implemented.");
+  logout(): void {
+    this.tokenItc.setToken("");
   }
 }
