@@ -19,6 +19,29 @@ div.crop-img img{
   margin: 0 0 0 -25%;
 }
 
+.list-img-container {
+  height: 72px;
+  width: 120px;
+  overflow: hidden;
+}
+
+.list-img-container img {
+  height: 100%;
+  margin: 0 0 0 -10%;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+}
+
 .top-left {
   position: absolute;
   top: 5px;

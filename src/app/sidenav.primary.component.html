@@ -1,5 +1,11 @@
 <md-nav-list>
   <md-list-item>
+    <a md-line href="#">{{this.email}}</a>
+  </md-list-item>
+  <md-list-item>
+    <a md-line href="#" (click)="this.login('john@doe.com','abc1234')">Login</a>
+  </md-list-item>
+  <md-list-item>
     <a md-line href="...">Übersicht</a>
   </md-list-item>
   <md-list-item>

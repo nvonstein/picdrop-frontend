@@ -24,16 +24,17 @@
 
     <md-list *ngSwitchCase="'list'">
       <md-list-item *ngFor="let item of resources, let i=index">
-        <md-checkbox id="{{item.id}}"
+        <md-checkbox md-list-icon id="{{item.id}}"
                      [checked]="item.selected"
                      (change)="selectElement($event,i)"
                      class=""></md-checkbox>
-        <div>
-          <h3 md-line> Image{{item.id}} </h3>
-          <p md-line>
-            <span> Lore Ipsum</span>
-          </p>
+        <div class="list-img-container">
+          <img src="assets/img/Image{{item.img}}.jpg">
         </div>
+        <h3 md-line> Image{{item.id}} </h3>
+        <p md-line>
+          <span> Lore Ipsum</span>
+        </p>
       </md-list-item>
     </md-list>
   </div>
